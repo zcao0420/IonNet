@@ -1,5 +1,6 @@
 # Neural Network predicts ion concentration profile under nanoconfinement
 Neural Network predicts ion concentration profile under nanoconfinement
+![alt text](https://github.com/zcao0420/IonNet/blob/main/pipeline.pdb?raw=true)
 
 ## Usage
 In order to use IonNet, you need to first install all required packages.

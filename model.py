@@ -8,7 +8,7 @@ import os
 
 
 class IonNet(nn.Module):
-    def __init__(self, n_in=6, activation='Sigmoid'):
+    def __init__(self, n_in=6, activation='ReLU'):
         super(IonNet, self).__init__()
         if activation == 'ReLU':
             self.act = F.relu
@@ -27,9 +27,8 @@ class IonNet(nn.Module):
         for i in range(len(self.linears)-1):
             x = self.act(self.linears[i](x))
         x = self.linears[-1](x)
+
         return torch.sigmoid(x)
-        # return F.relu(x)
-        # return x
 
 
 class IonDataset(Dataset):
@@ -45,21 +44,6 @@ class IonDataset(Dataset):
         y = torch.tensor(self.y[idx], dtype=torch.float)
         return x, y.view(-1)
 
-# def split_data(data, test_ratio, valid_ratio, randomSeed = None):
-#     total_size = len(data)
-#     train_ratio = 1 - valid_ratio - test_ratio
-#     indices = list(range(total_size))
-#     print("The random seed is: ", randomSeed)
-#     np.random.seed(randomSeed)
-#     np.random.shuffle(indices)
-#     train_size = int(train_ratio * total_size)
-#     valid_size = int(valid_ratio * total_size)
-#     test_size = int(test_ratio * total_size)
-#     print('Train size: {}, Validation size: {}, Test size: {}'.format(
-#     train_size, valid_size, test_size
-#     ))
-#     train_idx, valid_idx, test_idx = indices[:train_size], indices[-(valid_size + test_size):-test_size], indices[-test_size:]
-#     return data[train_idx], data[valid_idx], data[test_idx]
 
 def split_data(data, valid_ratio, randomSeed = None):
     total_size = len(data)
